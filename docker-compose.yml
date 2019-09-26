@@ -1,0 +1,62 @@
+# data-www
+data-www:
+    container_name: assets_web_data-www
+    image: busybox
+    volumes:
+        - ./app:/app
+
+## php-fpm
+php-fpm:
+    container_name: assets_web_php-fpm
+    build: ./docker-assets/php-fpm
+    volumes_from:
+        - data-www
+    volumes:
+        - ./docker-assets/php-fpm/scripts:/scripts
+    links:
+        - mysql
+    working_dir: /app
+    environment:
+        APP_NAME: assets development
+        APP_KEY: base64:1PCJD2skvjBXiXwxN7US8DdM3QiSNTuouD7CzSFo0dY=
+        APP_ENV: local
+        APP_DEBUG: "true"
+        APP_URL: http://localhost:8080
+        DB_CONNECTION: mysql
+        DB_HOST: mysql
+        DB_PORT: 3306
+        DB_DATABASE: homestead
+        DB_USERNAME: homestead
+        DB_PASSWORD: secret
+
+# nginx
+nginx:
+    container_name: assets_web_nginx
+    build: ./docker-assets/nginx
+    volumes_from:
+        - data-www
+    volumes:
+        # - ./swagger:/swagger
+        - ./docker-assets/nginx/conf.d:/etc/nginx/conf.d
+    links:
+        - php-fpm
+        # - node
+    ports:
+        - "8080:8080"
+        - "443:443"
+    working_dir: /app
+
+# mysql
+mysql:
+    container_name: assets_web_mysql
+    image: mysql
+    volumes:
+        - ./docker-assets/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf
+        - ./docker-assets/mysql_data:/var/lib/mysql
+    ports:
+         - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: homestead
+        MYSQL_USER: homestead
+        MYSQL_PASSWORD: secret
