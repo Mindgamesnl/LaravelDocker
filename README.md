@@ -1,12 +1,17 @@
 # What?
-Small docker template for laravel applications (with Nginx + Mysql) because I know that you are a lazy shit and find Docker too much effort. Well, not anymore.
+This project contains a small docker stack with preconfigured installations of
+ - MySQL
+ - phpMyAdmin
+ - nginx
+ - php-fm
+
 # How?
-Base docker php/mysql setup.
+Simply call `./build.sh` when initially cloning this repo, then run one of the other utility scripts start the stack.
 
-`./build.sh` to build
+Included scripts:
+ - `./build.sh` builds all containers locally
+ - `./up.sh` Starts all containers
+ - `./down.sh` Stops all containers
+ - `./find-allocations.sh` Prints all local ipaddress of your containers, useful to attach debuggers or to enter sql through phpmyadmin.
 
-`./up.sh` to start
-
-`./down.sh` to stop
-
-public php root at `app/public`
+You can dump your application, laravel or symfony stack in the `app` directory, only the `app/public` directory will be served.
