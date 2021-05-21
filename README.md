@@ -17,7 +17,7 @@ Included scripts:
 
 You can dump your application, laravel or symfony stack in the `app` directory, only the `app/public` directory will be served.
 
-#Usage
+# Usage
 You'll be able to access your applications through the following links while the stack is running
  - phpMyAdmin: `http://localhost:8090/index.php?route=/&route=%2F`
  - Your application: `http://localhost:8080/`
