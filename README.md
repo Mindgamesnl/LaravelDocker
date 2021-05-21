@@ -16,3 +16,10 @@ Included scripts:
  - `./find-allocations.sh` Prints all local ipaddress of your containers, useful to attach debuggers or to enter sql through phpmyadmin.
 
 You can dump your application, laravel or symfony stack in the `app` directory, only the `app/public` directory will be served.
+
+#Usage
+You'll be able to access your applications through the following links while the stack is running
+ - phpMyAdmin: `http://localhost:8090/index.php?route=/&route=%2F`
+ - Your application: `http://localhost:8080/`
+
+The default sql credentials for root are `root` with the super secure password, `secret`. (or use the `default` user with the same password for a user with lower privileges). The sql server generates with a default database called `default`.

@@ -57,8 +57,8 @@ mysql:
          - "3306:3306"
     environment:
         MYSQL_ROOT_PASSWORD: secret
-        MYSQL_DATABASE: homestead
-        MYSQL_USER: homestead
+        MYSQL_DATABASE: default
+        MYSQL_USER: default
         MYSQL_PASSWORD: secret
 
 phpmyadmin:
@@ -66,5 +66,8 @@ phpmyadmin:
     restart: always
     ports:
         - 8090:80
+    links:
+        - mysql
     environment:
-        - PMA_ARBITRARY=1
+        - MYSQL_ROOT_PASSWORD=secret
+        - PMA_HOST=mysql
