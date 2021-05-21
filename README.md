@@ -11,6 +11,7 @@ Simply call `./build.sh` when initially cloning this repo, then run one of the o
 Included scripts:
  - `./build.sh` builds all containers locally
  - `./up.sh` Starts all containers
+ - `./php.sh` Attempts to find your php fpm container (regardless of name) and drops you into a shell session which supports the php cpi
  - `./down.sh` Stops all containers
  - `./find-allocations.sh` Prints all local ipaddress of your containers, useful to attach debuggers or to enter sql through phpmyadmin.
 
